@@ -1,0 +1,165 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='utf-8' />
+<link href='../fullcalendar.css' rel='stylesheet' />
+<link href='../fullcalendar.print.css' rel='stylesheet' media='print' />
+<script src='../lib/moment.min.js'></script>
+<script src='../lib/jquery.min.js'></script>
+<script src='../fullcalendar.min.js'></script>
+<script>
+
+	$(document).ready(function() {
+			
+events_list=[
+  {
+    "title": "Euro",
+    "start": "2016-06-10",
+    "end": "2016-07-10"
+  },
+  {
+    "title": "5SOS",
+    "start": "2016-06-30",
+    "end": "2016-09-17"
+  },
+  {
+    "title": "Tame Impala",
+    "start": "2016-07-11",
+    "end": 0
+  },
+  {
+    "title": "Moshe Peretz & Omer Adam",
+    "start": "2016-07-10",
+    "end": 0
+  },
+  {
+    "title": "MTLV",
+    "start": "2016-07-14",
+    "end": 0
+  },
+  {
+    "title": "5SOS",
+    "start": "2016-07-16",
+    "end": 0
+  },
+  {
+    "title": "Pharrell",
+    "start": "2016-07-21",
+    "end": 0
+  },
+  {
+    "title": "Avicii",
+    "start": "2016-07-22",
+    "end": 0
+  },
+  {
+    "title": "5SOS",
+    "start": "2016-07-22",
+    "end": 0
+  },
+  {
+    "title": "BA",
+    "start": "2016-07-22",
+    "end": "2016-07-23"
+  },
+  {
+    "title": "MTV",
+    "start": "2016-07-28",
+    "end": "2016-07-29"
+  },
+  {
+    "title": "Indie Kineret",
+    "start": "2016-07-29",
+    "end": 0
+  },
+  {
+    "title": "Tomorrowland Unite",
+    "start": "2016-07-29",
+    "end": 0
+  },
+  {
+    "title": "RICOH - Woman Golf",
+    "start": "2016-07-28",
+    "end": "2016-07-30"
+  },
+  {
+    "title": "Speedway",
+    "start": "2016-07-29",
+    "end": "2016-07-30"
+  },
+  {
+    "title": "Santana",
+    "start": "2016-07-30",
+    "end": 0
+  },
+  {
+    "title": "Sia",
+    "start": "2016-08-11",
+    "end": 0
+  },
+  {
+    "title": "Garbage",
+    "start": "2016-08-16",
+    "end": 0
+  },
+  {
+    "title": "Louis C K",
+    "start": "2016-08-18",
+    "end": 0
+  },
+  {
+    "title": "Life in Color",
+    "start": "2016-08-25",
+    "end": 0
+  },
+  {
+    "title": "Queen & Adam Lambert",
+    "start": "2016-09-12",
+    "end": 0
+  },
+  {
+    "title": "Tamar Festival",
+    "start": "2016-10-17",
+    "end": "2016-10-20"
+  }
+];			
+			
+			
+		$('#calendar').fullCalendar({
+			header: {
+				left: 'prev,next today',
+				center: 'title',
+				right: 'month,basicWeek,basicDay'
+			},
+			defaultDate: new Date(),
+			editable: true,
+			eventLimit: false, // allow "more" link when too many events
+			events: events_list
+		});
+		
+	});
+
+</script>
+<style>
+
+	body {
+		margin: 40px 10px;
+		padding: 0;
+		font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
+		font-size: 14px;
+	}
+
+	#calendar {
+		max-width: 900px;
+		margin: 0 auto;
+	}
+
+</style>
+</head>
+<body>
+
+	<div id='calendar'></div>
+
+</body>
+</html>
