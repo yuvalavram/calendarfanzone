@@ -199,7 +199,17 @@ events_list=[
 			defaultDate: new Date(),
 			editable: true,
 			eventLimit: false, // allow "more" link when too many events
-			events: events_list
+			events: events_list,
+			
+
+			eventClick: function(event) {
+				if (event.url) {
+					window.open(event.url);
+					return false;
+				}
+			}			
+			
+			
 		});
 		
 	});
