@@ -2,9 +2,12 @@
 <html>
 <head>
     <meta charset='utf-8' />
+    <title>Fanzone Calendar</title>
 
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
     <link href='fullcalendar.css' rel='stylesheet' />
     <link href='fullcalendar.print.css' rel='stylesheet' media='print' />
+
     <style>
 
         body {
@@ -19,6 +22,7 @@
             margin: 0 auto;
         }
 
+        // Make events multi line when in week view
         .fc-basicWeek-view .fc-content {
             white-space: normal;
         }
@@ -40,7 +44,15 @@
                     defaultDate: new Date(),
                     editable: true,
                     eventLimit: false, // allow "more" link when too many events
-                    events: event_list
+                    events: event_list,
+
+                    // Make clicking on events open them in a new tab
+                    eventClick: function(calendar_event, js_event, view) {
+                        if (calendar_event.url) {
+                            window.open(calendar_event.url, "_blank");
+                            return false;
+                        }
+                    }
                 });
             });
         });
