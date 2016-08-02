@@ -2,6 +2,8 @@
 <html>
 <head>
     <meta charset='utf-8' />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+
     <title>FZ Calendar</title>
 
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
@@ -11,15 +13,32 @@
     <style>
 
         body {
-            margin: 40px 10px;
+            margin: 0;
             padding: 0;
             font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
             font-size: 14px;
+            box-sizing: border-box;
         }
 
-        #calendar {
+        .main-content {
+            padding: 40px 10px;
+            height: 100vh;
+        }
+
+        #calendar, .last-updated {
             max-width: 900px;
             margin: 0 auto;
+        }
+
+        .last-updated {
+            margin-top: 20px;
+        }
+
+        /* On mobile, don't limit the height of the calendar */
+        @media(max-width: 600px) and (orientation: portrait) {
+            .fc-scroller {
+                height: auto !important;
+            }
         }
 
         /* Make events multi line when in week view */
@@ -39,6 +58,7 @@
     <script>
         $(document).ready(function() {
             $.getJSON("events.json", function(event_list) {
+                $('#last_updated_text').text(event_list.last_updated)
                 $('#calendar').fullCalendar({
                     header: {
                         left: 'prev,next today',
@@ -46,9 +66,9 @@
                         right: 'month,basicWeek,basicDay'
                     },
                     defaultDate: new Date(),
-                    editable: true,
+                    editable: false,
                     eventLimit: false, // allow "more" link when too many events
-                    events: event_list,
+                    events: event_list.events,
 
                     // Make clicking on events open them in a new tab
                     eventClick: function(calendar_event, js_event, view) {
@@ -56,6 +76,15 @@
                             window.open(calendar_event.url, "_blank");
                             return false;
                         }
+                    },
+
+                    // Add tooltips with the full event name
+                    eventAfterAllRender: function(view) {
+                        $("a.fc-event").each(function(){
+                            jquery_elem = $(this);
+                            event_name = jquery_elem.find(".fc-title").text();
+                            jquery_elem.attr("title", event_name);
+                        });
                     }
                 });
             });
@@ -64,8 +93,12 @@
 </head>
 
 <body>
-
-    <div id='calendar'></div>
+    <div class="main-content">
+        <div id='calendar'></div>
+        <div class="last-updated">
+            Last updated: <span id='last_updated_text'></span>
+        </div>
+    </div>
 
 </body>
 </html>

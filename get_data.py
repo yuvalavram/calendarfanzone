@@ -1,6 +1,12 @@
+import os
+import time
 import json
 import datetime
 from carpool.models import Match, AppParamsTeam
+
+SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+
+EVENTS_JSON_PATH = os.path.join(SCRIPT_DIR, "events.json")
 
 
 class MatchObj(object):
@@ -87,7 +93,7 @@ def main():
             matches_on_current_date[match.title] = match_obj
 
     # Transform match objects to event format
-    result = []
+    events_data = []
     for match_obj in matchs_data:
         title = match_obj.match.title
         url = ""
@@ -104,14 +110,20 @@ def main():
         if match_obj.end_time:
             end_time = match_obj.end_time.strftime("%Y-%m-%d")
 
-        result.append({
+        events_data.append({
             "title": title,
             "start": start_time,
             "end": end_time,
             "url": url,
         })
 
-    print(json.dumps(result))
+    result = {}
+    result["last_updated"] = time.strftime("%Y-%m-%d %H:%M:%S")
+    result["events"] = events_data
+
+    #print(json.dumps(result))
+    open(EVENTS_JSON_PATH, "wb").write(json.dumps(result))
+    print("Updated %s" % EVENTS_JSON_PATH)
 
 
 if __name__ == '__main__':
