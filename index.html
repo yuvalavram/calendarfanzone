@@ -36,36 +36,20 @@
     <script src='lib/moment.min.js'></script>
     <script src='lib/jquery.min.js'></script>
     <script src='fullcalendar.min.js'></script>
-    <script>
-        $(document).ready(function() {
-            $.getJSON("events.json", function(event_list) {
-                $('#calendar').fullCalendar({
-                    header: {
-                        left: 'prev,next today',
-                        center: 'title',
-                        right: 'month,basicWeek,basicDay'
-                    },
-                    defaultDate: new Date(),
-                    editable: true,
-                    eventLimit: false, // allow "more" link when too many events
-                    events: event_list,
-
-                    // Make clicking on events open them in a new tab
-                    eventClick: function(calendar_event, js_event, view) {
-                        if (calendar_event.url) {
-                            window.open(calendar_event.url, "_blank");
-                            return false;
-                        }
-                    }
-                });
-            });
-        });
-    </script>
 </head>
 
 <body>
 
-    <div id='calendar'></div>
+    <div id='calendar'>
+	עברנו לכתובת הזאת
+	<br/>
+	https://myfanzone.com/calendar/
+	<br/>
+	<br/>
+	תודה	
+	<br/>
+	יובל וברוש
+	</div>
 
 </body>
 </html>
